@@ -21,4 +21,12 @@ class Game
       end
     end
   end
+
+  def menu
+    puts "Tu veux faire quoi jeune mouss' ?"
+    puts "1. Je veux jouer un tour !"
+    puts "2. Je veux en savoir plus sur le jeu !"
+    puts "3. Je sais pas quoi proposer enfait..."
+    puts "4. Je veux arrêter de jouer."
+  end
 end

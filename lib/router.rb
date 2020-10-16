@@ -6,11 +6,7 @@ class Router
   def perform
     puts " Bienvenue dans notre super RPG !"
     while true
-      puts "Tu veux faire quoi jeune mouss' ?"
-      puts "1. Je veux jouer une partie !"
-      puts "2. Je veux en savoir plus sur le jeu !"
-      puts "3. Je sais pas quoi proposer enfait..."
-      puts "4. Je veux arrêter de jouer."
+      @game.menu
       choice = gets.chomp.to_i
       case choice
       when 1
