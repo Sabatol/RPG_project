@@ -16,38 +16,76 @@ class Player
     puts "#{name} a #{@life_points} points de vie."
   end
 
-  # Calcul des dégats. Si PV <= 0, joueur décédé et PV PAS REMIS A 0
-  def gets_damage(hit)
-    @life_points -= hit
+  # Calcul des dégats 
+  def compute_damage
+    return rand(1..20) * @weapon_level
+  end 
+
+  # Calcul des soins
+  def compute_heal
+    return rand(1..100)
+  end
+
+  # Application des dégats sur les points de vie d'un personnage. Si PV <= 0, joueur décédé et PV PAS REMIS A 0
+  def gets_damage(compute_damage)
+    @life_points -= compute_damage
     if @life_points <= 0
       puts "HE IS DEAD"
-      #@life_points = 0
     end
   end
 
-  # Enlève des pvs à la cible (integer pour compute_damage)
+  # Application des dégats sur les points de vie d'un personnage. Si PV <= 0, joueur décédé et PV PAS REMIS A 0
+  def gets_heal(compute_heal)
+    @life_points += compute_heal
+    if @life_points > @max_life_points
+      @life_points = @max_life_points
+    end
+  end
+
+  # Enlève des pvs à la cible (Attaquer)
   def attacks(target)
     puts
     puts "Le joueur #{name} attaque le joueur #{target.name}"
-    damage = compute_damage
-    if damage > @max_life_points/2
-    puts "OULALALAAAA ! Il lui inflige #{damage} points de dommages !"
-    target.gets_damage(damage)
-    elsif damage > @max_life_points/4
-      puts "Très joli coup ! Il lui inflige #{damage} points de dommages !"
-      target.gets_damage(damage)
-    elsif damage > @max_life_points/8
-      puts "Mouais... Il lui inflige #{damage} points de dommages."
-      target.gets_damage(damage)
-    else 
-      puts "Le coup est trèèès léger. Il lui inflige #{damage} points de dommages."
-      target.gets_damage(damage)
+    damage = compute_damage - target.shield
+    if damage < 0 
+      damage = 0
     end
+    puts "Il lui inflige #{damage} points de dégat(s)."
+    target.gets_damage(damage)
+    # if damage > @max_life_points/2
+    # puts "OULALALAAAA ! Il lui inflige #{damage} points de dommages !"
+    # target.gets_damage(damage)
+    # elsif damage > @max_life_points/4
+    #   puts "Très joli coup ! Il lui inflige #{damage} points de dommages !"
+    #   target.gets_damage(damage)
+    # elsif damage > @max_life_points/8
+    #   puts "Mouais... Il lui inflige #{damage} points de dommages."
+    #   target.gets_damage(damage)
+    # else 
+    #   puts "Le coup est trèèès léger. Il lui inflige #{damage} points de dommages."
+    #   target.gets_damage(damage)
+    # end
   end
-  # Méthode pour calculer les dégats 
-  def compute_damage
-    return rand(1..20) * @weapon_level - @shield
-  end 
+    # Rajoute des pvs à la cible (Soigner)
+    def heal(target)
+      puts
+      puts "Le joueur #{name} soigne le joueur #{target.name}"
+      heal = compute_heal
+      if heal > @max_life_points/2
+      puts "Très gros soin ! Il lui soigne #{heal} points de dommages !"
+      target.gets_heal(heal)
+      elsif damage > @max_life_points/4
+        puts "Bon soin ! Il lui soigne #{heal} points de dommages !"
+        target.gets_heal(heal)
+      elsif damage > @max_life_points/8
+        puts "Soin correct. Il lui soigne #{heal} points de dommages !"
+        target.gets_heal(heal)
+      else 
+        puts "Soin léger. Il lui soigne #{heal} points de dommages !"
+        target.gets_heal(heal)
+      end
+    end
+
 
   # On cherche un bouclier et on l'équipe si il est mieux que l'actuel
   def search_shield
