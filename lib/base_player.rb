@@ -1,6 +1,6 @@
 
-class Player
-  attr_accessor :name, :life_points
+class BasePlayer
+  attr_accessor :name, :life_points, :shield, :max_life_points
 
   # On créer des nouveaux joueurs ici, et on leur attribue un nom et des points de vie !
   def initialize(name)
@@ -86,6 +86,11 @@ class Player
       end
     end
 
+  def try_to_kill(player)
+    if player.life_points <= 0
+      $enemies_in_sight.delete(player)
+    end
+  end
 
   # On cherche un bouclier et on l'équipe si il est mieux que l'actuel
   def search_shield

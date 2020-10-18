@@ -1,5 +1,7 @@
-class HumanPlayer < Player
-  attr_accessor :life_points, :weapon_level, :shield, :max_life_points
+require_relative 'game'
+
+class HumanPlayer < BasePlayer
+  attr_accessor :life_points, :weapon_level, :shield, :max_life_points, :enemies
 
   def initialize(name)
     @name = name
@@ -49,13 +51,13 @@ class HumanPlayer < Player
     when "s"
       search_health_pack
     else
-      # numbers = ["0","1","2","3","4"]
-      # if numbers.include?(action)
-      #   attacks(@enemies[action.to_i])
-      #   try_to_kill(@enemies[action.to_i])
-      # else
-      # puts "Tant pis pour toi, fais attention à ce que tu écris parce que là, tu perds un tour à te faire marrave gratos !"
-      # end
+      numbers = ["0","1","2","3","4"]
+      if numbers.include?(action)
+        attacks($enemies[action.to_i])
+        try_to_kill($enemies[action.to_i])
+      else
+      puts "Tant pis pour toi, fais attention à ce que tu écris parce que là, tu perds un tour à te faire marrave gratos !"
+      end
     end
   end
 end
