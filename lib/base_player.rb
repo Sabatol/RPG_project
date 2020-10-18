@@ -52,19 +52,20 @@ class BasePlayer
     end
     puts "Il lui inflige #{damage} points de dégat(s)."
     target.gets_damage(damage)
-    # if damage > @max_life_points/2
-    # puts "OULALALAAAA ! Il lui inflige #{damage} points de dommages !"
-    # target.gets_damage(damage)
-    # elsif damage > @max_life_points/4
-    #   puts "Très joli coup ! Il lui inflige #{damage} points de dommages !"
-    #   target.gets_damage(damage)
-    # elsif damage > @max_life_points/8
-    #   puts "Mouais... Il lui inflige #{damage} points de dommages."
-    #   target.gets_damage(damage)
-    # else 
-    #   puts "Le coup est trèèès léger. Il lui inflige #{damage} points de dommages."
-    #   target.gets_damage(damage)
-    # end
+    # Algorithme déjà prêt pour envoyer un message différent en fonction du rapport dégats/PVmax
+      # if damage > @max_life_points/2
+      #   puts "OULALALAAAA ! Il lui inflige #{damage} points de dommages !"
+      #   target.gets_damage(damage)
+      # elsif damage > @max_life_points/4
+      #   puts "Très joli coup ! Il lui inflige #{damage} points de dommages !"
+      #   target.gets_damage(damage)
+      # elsif damage > @max_life_points/8
+      #   puts "Mouais... Il lui inflige #{damage} points de dommages."
+      #   target.gets_damage(damage)
+      # else 
+      #   puts "Le coup est trèèès léger. Il lui inflige #{damage} points de dommages."
+      #   target.gets_damage(damage)
+      # end
   end
     # Rajoute des pvs à la cible (Soigner)
     def heal(target)

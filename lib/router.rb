@@ -8,9 +8,7 @@ class Router
     puts " Bienvenue dans notre super RPG !"
     puts
     while true
-      @game.menu_game
-      action = @game.menu_game_action
-      case action
+      case @game.menu_game
       when 1
         @game.turn
       when 2
